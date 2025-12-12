@@ -1,0 +1,272 @@
+\documentclass{article}
+
+%Packages
+\usepackage[utf8]{inputenc}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+%Page Layout
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\Huge \textbf{Software Requirements Specification}}\\[2cm]
+    {\Large for}\\[0.5cm]
+    {\Large Parks and Recreation Mobile App Enhancement}\\[2cm]
+    {\large Version 2.0 approved}\\[2cm]
+    {\large Prepared by:}\\[0.3cm]
+    {\large Alejandro Perez, Matthew Floresca Tom, Jason Giang, Jayden Darling}\\[2cm]
+    {\large Los Angeles Parks and Recreations Department}\\[0.5cm]
+    {\large December 5, 2025}
+\end{titlepage}
+
+\pagestyle{fancy}
+\fancyhead[L]{Software Requirements Specification for Parks \& Recreation Mobile App Enhancement}
+\fancyhead[R]{Page \thepage}
+
+\newpage
+
+\tableofcontents
+\renewcommand{\cfttoctitlefont}{\Huge\bfseries}
+\renewcommand{\cftbeforetoctitleskip}{1em}
+\renewcommand{\cftaftertoctitleskip}{1em}
+\renewcommand{\cftdotsep}{1.5}
+
+\newpage
+
+\section{Revision History}
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Date} & \textbf{Reason For Changes} & \textbf{Version} \\
+\hline
+Jason Giang & 12/05/25 & Revision & 2.0\\
+Matthew Floresca Tom & 12/7/25 & Add legal and ethical considerations & 2.0\\
+\end{tabular}
+
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of this document is to assert the requirements for Los Angeles County Parks \& Recreations. The application will allow the user to explore the park, view amenities, and interact with gamified features. This document represents version 2.0.
+
+\subsection{Intended Audience and Reading Suggestions}
+Intended readers include developers, project managers, and testers. The SRS includes product scope, external interface requirements, system features, and nonfunctional requirements. It should be read sequentially.
+
+\subsection{Product Scope}
+The application is cross-platform (iOS and Android). It provides park amenity information and includes a motion detection feature for exercise tracking.
+
+\subsection{References}
+\begin{itemize}
+    \item LA County Parks Official Site: \texttt{http://parks.lacounty.gov/}
+    \item Whittier Nature Center Information: \texttt{https://parks.lacounty.gov/whittier-narrows-natural-area-and-nature-center/}
+\end{itemize}
+
+\newpage
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+The app enhancement adds new interactive gamification features to an existing product.
+
+\subsection{Product Functions}
+The application includes:
+\begin{itemize}
+    \item Geolocation
+    \item Exercise detection
+    \item Pedometer
+    \item Text-to-speech
+    \item Offline audio
+    \item Quizzes
+    \item Virtual pet
+    \item Health bar
+    \item Pop-up information windows
+\end{itemize}
+
+\subsection{User Classes and Characteristics}
+There is one user class: the player. The user navigates the park, completes quizzes, collects items, and maintains a virtual pet.
+
+\subsection{Operating Environment}
+\begin{itemize}
+    \item iOS 10.0+
+    \item Android 4.0+
+    \item Access to device GPS
+\end{itemize}
+
+\subsection{Design and Implementation Constraints}
+The application must be built using:
+\begin{itemize}
+    \item React Native
+    \item JavaScript
+\end{itemize}
+
+\subsection{User Documentation}
+N/A
+
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+    \item UI may change in later iterations
+    \item Exercise detection may not be fully accurate
+\end{itemize}
+
+\subsection{Apportioning of Requirements}
+N/A
+
+\section{External Interface Requirements}
+
+\subsection{User Interfaces}
+The home screen includes:
+\begin{itemize}
+    \item Points of interest
+    \item Backpack
+    \item Virtual pet icon
+    \item Health bar
+    \item Step counter
+    \item Image slider with descriptions
+\end{itemize}
+
+\subsection{Hardware Interfaces}
+None.
+
+\subsection{Software Interfaces}
+The app uses:
+\begin{itemize}
+    \item React Native Maps (geolocation)
+    \item Async Storage (data persistence)
+    \item Expo Pedometer (step count)
+    \item Expo Speech (text-to-speech)
+    \item Expo Barometer (exercise detection)
+    \item React Snap (image carousel)
+\end{itemize}
+
+\subsection{Communications Interfaces}
+N/A
+
+\newpage
+
+\section{Legal and Ethical Considerations}
+
+\subsection{User Data Privacy and Security}
+The Parks and Recreation Mobile App Enhancement collects and processes user data, such as geolocation information, exercise data (e.g., steps, distance, calories), and in-app interactions (e.g., quiz results, virtual pet data). All personal and sensitive data is stored securely in accordance with applicable privacy laws, including but not limited to the California Consumer Privacy Act (CCPA) and General Data Protection Regulation (GDPR) for users in the European Union.
+
+\subsection{Data Collection and Consent}
+The app will request user consent before collecting any personal data. Users will be informed about the specific data being collected and its intended use, such as for providing personalized experiences, tracking exercise, or delivering gamified features. Consent will be obtained through opt-in forms within the app before collecting any location or health data. Users have the right to withdraw consent at any time.
+
+\subsection{Data Retention and Deletion}
+User data will be stored only as long as necessary for the functionality of the app, such as for gamification features or tracking progress. Upon request, users can delete their data by navigating to the app’s settings and opting to delete their account. All personal data will be permanently removed from the server within a reasonable time frame once the user requests data deletion.
+
+\subsection{Data Sharing and Third-Party Integrations}
+The app does not share user data with third parties for commercial purposes. However, third-party services like geolocation APIs or exercise tracking features (e.g., pedometer) may require limited access to user data for functionality purposes. Any third-party services integrated into the app will comply with their respective privacy policies, and users will be made aware of these integrations through the app’s privacy policy.
+
+\subsection{Security Measures}
+To protect user data, the app will implement encryption protocols for sensitive data in transit and at rest. User information, especially geolocation and health data, will be transmitted securely using HTTPS. Additionally, any data stored in the app will be kept in a secure, encrypted database, and access to this data will be restricted to authorized personnel only.
+
+\subsection{Ethical Considerations}
+The app aims to promote a healthy lifestyle by encouraging users to engage in physical activities and interact with park features. However, the ethical implications of collecting health and location data are considered. Users will be informed about how their data is used, and the app will ensure that no data is exploited or used for unethical purposes, such as targeting users with advertisements based on their health behaviors or location.
+
+\subsection{User Rights and Access}
+Users will have the ability to access, review, and update their data within the app. In addition, they will be able to request reports on the data collected about them and exercise their right to have inaccuracies corrected. If any users feel that their data is being misused or handled improperly, they will have access to contact information for addressing privacy concerns.
+
+
+\section{Requirements Specification}
+
+\subsection{Functional Requirements}
+
+\subsubsection{Virtual Pet}
+FR-1: Users can select a virtual pet at any time.
+
+\subsubsection{Quizzes}
+FR-2: The user shall receive quizzes during gameplay.
+
+\subsubsection{Pedometer}
+FR-3: The app shall track the user's steps.
+
+\subsubsection{Exercise Detection}
+FR-4: The app shall detect user movement during exercises.
+
+\subsubsection{Expandable List View}
+FR-5: Displays amenities and points of interest.
+
+\subsubsection{Responsive Images}
+FR-6: Images shall respond to touch.
+
+\subsubsection{Text-to-Speech}
+FR-7: Converts text to audio automatically.
+
+\subsubsection{Audio Module}
+FR-8: Plays sounds on button interaction.
+
+\subsubsection{Backpack Feature}
+FR-9: Stores collected user items.
+
+\subsubsection{Reward Items}
+FR-10: Users collect items from exercises, quizzes, and exploration.
+
+\subsubsection{Points of Interest}
+FR-11: Displays markers on the main screen.
+
+\subsubsection{Geolocation}
+FR-12: The app shall show the user's current position.
+
+\subsubsection{Facts}
+FR-13: Pop-up windows show park facts.
+
+\subsubsection{Health Bar}
+FR-14: Displays virtual pet health status.
+
+\subsection{External Interface Requirements}
+N/A
+
+\subsection{Logical Database Requirements}
+N/A
+
+\subsection{Design Constraints}
+The app must be cross-platform and built using React Native + JavaScript.
+
+\section{Other Nonfunctional Requirements}
+
+\subsection{Performance Requirements}
+\begin{itemize}
+    \item User location updates must be timely.
+    \item Audio should play without delay.
+    \item Navigation between pages must be responsive.
+    \item Images must render clearly.
+    \item Maps must load quickly.
+\end{itemize}
+
+\subsection{Safety Requirements}
+N/A
+
+\subsection{Security Requirements}
+N/A
+
+\subsection{Software Quality Attributes}
+\begin{itemize}
+    \item Cross-platform compatibility
+    \item Maintainability and update support
+    \item Availability except during maintenance
+\end{itemize}
+
+\subsection{Business Rules}
+N/A
+
+\section{Other Requirements}
+N/A
+
+\appendix
+
+\section{Glossary}
+(Reserved)
+
+\section{Analysis Models}
+(Reserved)
+
+\section{To Be Determined List}
+(Reserved)
+
+
+\end{document}

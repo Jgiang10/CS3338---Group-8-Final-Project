@@ -1,0 +1,466 @@
+\documentclass[12pt]{article}
+\usepackage{setspace} 
+\usepackage{titling}  
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+
+    {\Huge \textbf{Software Design Document}}\
+
+\[2cm]
+
+ 
+    {\Large for}\
+
+\[0.5cm]
+    {\Large Parks and Recreation Mobile App Enhancement}\
+
+\[2cm]
+
+    {\large Version 1.0 approved}\
+
+\[2cm]
+
+    {\large Prepared by:}\
+
+\[0.3cm]
+    {\large Alejandro Perez, Matthew Floresca Tom, Jason Giang, Jayden Darling}\
+
+\[2cm]
+
+    {\large Los Angeles Parks and Recreations Department}\
+
+\[0.5cm]
+    {\large December 5, 2025}
+\end{titlepage}
+
+
+\newpage
+\begin{center}
+    {\Huge \textbf{Table of Contents}}
+\end{center}
+\vspace{1cm}
+
+\begin{tabbing}
+Table of Contents \= \kill 
+Table of Contents \> \hspace{8cm} <3> \\
+Revision History \> \hspace{8cm} <4> \\
+1.\ Introduction \> \hspace{8cm} <5> \\
+1.1.\ Purpose \> \hspace{8cm} <5> \\
+1.2.\ Document Conventions \> \hspace{8cm} <5> \\
+1.3.\ Intended Audience and Reading Suggestions \> \hspace{8cm} <5> \\
+1.4.\ System Overview \> \hspace{8cm} <5> \\
+2.\ Design Considerations \> \hspace{8cm} <6> \\
+2.1.\ Assumptions and dependencies \> \hspace{8cm} <6> \\
+2.2.\ General Constraints \> \hspace{8cm} <6> \\
+2.3.\ Goals and Guidelines \> \hspace{8cm} <6> \\
+2.4.\ Development Methods \> \hspace{8cm} <6> \\
+3.\ Architectural Strategies \> \hspace{8cm} <7> \\
+4.\ System Architecture \> \hspace{8cm} <7> \\
+4.1.\ DFD 0 \> \hspace{8cm} <7> \\
+4.2.\ DFD 1 \> \hspace{8cm} <8> \\
+5.\ Policies and Tactics \> \hspace{8cm} <8> \\
+5.1.\ Specific Products Used \> \hspace{8cm} <8> \\
+5.2.\ Requirements traceability \> \hspace{8cm} <8> \\
+5.3.\ Testing the software \> \hspace{8cm} <8> \\
+5.4.\ Engineering trade-offs \> \hspace{8cm} <8> \\
+5.5.\ Guidelines and conventions \> \hspace{8cm} <8> \\
+5.6.\ Protocols \> \hspace{8cm} <8> \\
+5.7.\ Maintaining the software \> \hspace{8cm} <8> \\
+5.8.\ Interfaces \> \hspace{8cm} <8> \\
+5.9.\ System's deliverables \> \hspace{8cm} <8> \\
+5.10.\ Abstraction \> \hspace{8cm} <8> \\
+6.\ Detailed System Design \> \hspace{8cm} <8> \\
+6.x\ Name of Module \> \hspace{8cm} <8> \\
+6.x.1\ Responsibilities \> \hspace{8cm} <9> \\
+6.x.2\ Constraints \> \hspace{8cm} <9> \\
+6.x.3\ Composition \> \hspace{8cm} <10> \\
+6.x.4\ Uses/Interactions \> \hspace{8cm} <10> \\
+6.x.5\ Resources \> \hspace{8cm} <11> \\
+6.x.6\ Interface/Exports \> \hspace{8cm} <11> \\
+7.\ Detailed Lower level Component Design \\
+7.x\ Name of Class or File \> \hspace{8cm} <15> \\
+7.x.1\ Classification \> \hspace{8cm} <15> \\
+7.x.2\ Processing Narrative (PSPEC) \> \hspace{8cm} <15> \\
+7.x.3\ Interface Description \> \hspace{8cm} <15> \\
+7.x.4\ Processing Detail \> \hspace{8cm} <15> \\
+7.x.4.1\ Design Class Hierarchy \> \hspace{8cm} <15> \\
+7.x.4.2\ Restrictions/Limitations \> \hspace{8cm} <15> \\
+7.x.4.3\ Performance Issues \> \hspace{8cm} <15> \\
+7.x.4.4\ Design Constraints \> \hspace{8cm} <15> \\
+7.x.4.5\ Processing Detail For Each Operation \> \hspace{8cm} <15> \\
+8.\ User Interface \\
+8.1.\ Overview of User Interface \> \hspace{8cm} <16> \\
+8.2.\ Screen Frameworks or Images \> \hspace{8cm} <17> \\
+8.3.\ User Interface Flow Model \> \hspace{8cm} <20> \\
+9.\ Database Design \\
+10.\ Requirements Validation and Verification \> \hspace{8cm} <20> \\
+11.\ Glossary \> \hspace{8cm} <20> \\
+12.\ References \> \hspace{8cm} <21> \\
+\end{tabbing}
+
+\newpage
+\begin{center}
+    {\Large \textbf{Revision History}}
+\end{center}
+\vspace{1cm}
+
+\begin{tabular}{|p{4cm}|p{3cm}|p{6cm}|p{2cm}|}
+\hline
+\textbf{Name} & \textbf{Date} & \textbf{Reason For Changes} & \textbf{Version} \\
+\hline
+Alejandro Perez, Jason Giang & 12/5/25 & First revision & 1.0 \\
+\hline
+Alejandro Perez, Jason Giang, Matthew Floresca Tom & 12/8/25  & Added more info to document  & 2.0  \\
+\hline
+ Alejandro Perez, Jason Giang, Matthew Floresca Tom, Jayden Darling & 12/11/25  & Finalized details for document  & 3.0  \\
+\hline
+ &  &  &  \\
+\hline
+ &  &  &  \\
+\hline
+\end{tabular}
+
+\newpage
+\section*{\textbf{1. Introduction}}
+
+\subsection*{\textbf{1.1 Purpose}}
+The purpose of this document is to assert the requirements for the Los Angeles County Parks \& Recreation Application. This application will allow the user to better navigate and explore the park. It will provide information about the different amenities of the park by creating interactivity with the user. The application would be a cross-platform. \\
+This document is version 1.0.
+
+\subsection*{\textbf{1.2 Intended Audience and Reading Suggestions}}
+Intended readers of the document consist of developers, project managers, and testers. The SRS includes product scope, external interface requirements, system features, non-functional requirements. The best way to read them is sequentially from top to bottom.
+
+\subsection*{\textbf{1.3 System Overview}}
+The application will provide information about the different points of interest of the park by displaying a carousel of images at the bottom of the home (main) screen. Each of these images correspond to one point of interest displayed on the map (main screen). The images can be selected and it will trigger a window and a virtual pet. The window has a text-to-speech functionality that will be activated automatically when the window is displayed. The question marks represent a point of interest in the park and they have functionality that can be triggered by tapping them. For the question marks to be activated the user needs to be close to them (around ten feet). If the user is close enough they can activate the question marks. When activated they can either call the Camo, Exercise or Quiz Screens. If the user is not close enough, an alert message will be displayed telling the user that it needs to be closer. \\
+
+There is a floating button on the main screen that displays a pedometer and a backpack icon, when selected. The pedometer icon will display the number of steps taken by the user. The backpack icon will navigate to the backpack screen when tapped. The backpack screen contains the number of items collected and it allows the user to use it to replenish the health bar when its content is low. The items in the backpack can be obtained by completing squats when the exercise screen gets triggered, answering questions correctly on the quizzes and finally by locating the camouflage animal in the camo screen. \\
+
+On the top left corner there is a pet icon. The user can select a pet by tapping the icon which will navigate to a Pet selection screen. This screen will display the available pets. \\
+
+Last, the health bar is displayed at the top of the main screen. This bar reflects the health of the pet. The bar should not go to a minimum amount of items (one heart and one water). If it does, the user will be alerted and prompted to use the items of the backpack to replenish the health bar.
+
+\newpage
+
+\section{2.1 Design Considerations}
+
+\subsection{2.1 Assumptions and Dependencies}
+The application can be run on both 
+ and Android devices. For iOS, it is recommended to run from version 10 and above. For Android, 4.1 and above. It must be able to access the user location. Several factors that could affect the functionality stated in the SRS include:
+\begin{itemize}[label=--]
+    \item Exercise detection functionality may not be totally accurate.
+\end{itemize}
+
+\subsection{2.2 General Constraints}
+The application must be a cross-platform application as per the request of the LA County Parks and Recreation Software Development Division. React Native Framework, Expo, and JavaScript language must be used for development.
+
+\subsection{2.3 Goals and Guidelines}
+The software has a mandatory delivery date that must be met by the end of Spring 2020 semester.
+
+\subsection{2.4 Development Methods}
+Agile Methodology.
+
+\section{3. Architectural Strategies}
+
+\subsection{3.1 React Native}
+The application is an add-on to a previous project. Therefore, this project will be developed using the React Native framework and JavaScript programming language.
+
+\section*{\textbf{4. Introduction}}
+
+\subsection*{\textbf{DFD 0}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{workflow.png}
+    \caption{DFD 0}
+    \label{fig:design}
+\end{figure}
+
+\subsection*{\textbf{DFD 1}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{workflow2.png}
+    \caption{DFD 1}
+    \label{fig:design2}
+\end{figure}
+
+\section{5. Policies and Tactics}
+
+\subsection{5.1 Choice of which specific products used}
+\begin{itemize}[label=--]
+    \item React Native
+\end{itemize}
+
+\subsection{5.2 Plans for ensuring requirements traceability}
+To ensure the requirements’ traceability, our team is mapping our requirements using Trello. Moreover, requirement progress is being tracked by our liaison and instructor.
+
+\subsection{5.3 Plans for testing the software}
+Unit testing.
+
+
+\section*{\textbf{6. Detailed System Design}}
+
+\subsection*{\textbf{6.1 Pedometer Module}}
+\subsubsection*{6.1.1 Responsibilities}
+This feature keeps track of the number of steps taken by the user.
+
+\subsubsection*{6.1.2 Constraints}
+N/A.
+
+\subsubsection*{6.1.3 Composition}
+N/A.
+
+\subsubsection*{6.1.4 Uses/Interactions}
+The user can see their accumulated steps by clicking the floating button in the home screen.
+
+\subsubsection*{6.1.5 Resources}
+This module uses Expo-Pedometer.
+
+\subsubsection*{6.1.6 Interface/Exports}
+This module uses DataPassing.js to store and retrieve data during application run time.
+
+% --- Backpack ---
+\subsection*{\textbf{6.2 Backpack}}
+\subsubsection*{6.2.1 Responsibilities}
+This module displays the number of items collected by the user.
+
+\subsubsection*{6.2.2 Constraints}
+N/A.
+
+\subsubsection*{6.2.3 Composition}
+N/A.
+
+\subsubsection*{6.2.4 Uses/Interactions}
+The user can use the items stored in the backpack to regain the pet’s health. Every item gained will be reflected in the backpack.
+
+\subsubsection*{6.2.5 Resources}
+This module uses react native navigation to move between the screens. This module also uses Async storage to retrieve and save data from the internal storage.
+
+\subsubsection*{6.2.6 Interface/Exports}
+This module uses DataPassing.js to store and retrieve data during application run time.
+
+% --- Map ---
+\subsection*{\textbf{6.3 Map}}
+\subsubsection*{6.3.1 Responsibilities}
+This module displays the points of interest in the park. It uses geo-location to locate the user’s current location to determine whether the user is in the radius of the park in order to play the game.
+
+\subsubsection*{6.3.2 Constraints}
+The user should be inside the radius of the park to play the game.
+
+\subsubsection*{6.3.3 Composition}
+N/A.
+
+\subsubsection*{6.3.4 Uses/Interactions}
+The map is the main component of the App. It displays the current location of the user. The user can interact with the question marks/point of interest and activate their functionality.
+
+\subsubsection*{6.3.5 Resources}
+This module uses react-native-maps for geo-location.
+
+\subsubsection*{6.3.6 Interface/Exports}
+N/A.
+
+% --- Exercise Module ---
+\subsection*{\textbf{6.4 Exercise Module}}
+\subsubsection*{6.4.1 Responsibilities}
+This component uses a barometer to determine if a user performed the number of squats required to earn an item.
+
+\subsubsection*{6.4.2 Constraints}
+User’s device is required to be equipped with an air pressure detector.
+
+\subsubsection*{6.4.3 Composition}
+N/A.
+
+\subsubsection*{6.4.4 Uses/Interactions}
+This module requires the user to squat while holding the phone. A counter will be displayed with the number of squats performed. After completion it will navigate to a prize screen. The user has the option to skip the exercise.
+
+\subsubsection*{6.4.5 Resources}
+This module uses an Expo-Barometer.
+
+\subsubsection*{6.4.6 Interface/Exports}
+N/A.
+
+% --- Quiz ---
+\subsection*{\textbf{6.5 Quiz}}
+\subsubsection*{6.5.1 Responsibilities}
+This module is activated by the question marks. It displays a quiz screen and assigns a prize when correct answers are selected.
+
+\subsubsection*{6.5.2 Constraints}
+It is only activated if the user is within 10 feet radius of the point of interest.
+
+\subsubsection*{6.5.3 Composition}
+This module contains three sub-components which are QuizListItems, QuizOptionItem and QuizClassHelper.
+
+\subsubsection*{6.5.4 Uses/Interactions}
+The user can choose the theme of the quiz. It assigns a reward when answered correctly.
+
+\subsubsection*{6.5.5 Resources}
+This module uses react native navigation to move between the screens.
+
+\subsubsection*{6.5.6 Interface/Exports}
+N/A.
+
+% --- Pet Module ---
+\subsection*{\textbf{6.6 Pet Module}}
+\subsubsection*{6.6.1 Responsibilities}
+This component allows the user to select a virtual pet from a list.
+
+\subsubsection*{6.6.2 Constraints}
+N/A.
+
+\subsubsection*{6.6.3 Composition}
+Comprising the pet icon and pet selection screen.
+
+\subsubsection*{6.6.4 Uses/Interactions}
+This module must allow the user to select their pet.
+
+\subsubsection*{6.6.5 Resources}
+This module uses react native navigation to move between the screens. This module also uses Async storage to retrieve and save the data from the internal storage.
+
+\subsubsection*{6.6.6 Interface/Exports}
+This module uses DataPassing.js to store and retrieve during application run time.
+
+% --- Health Bar Module ---
+\subsection*{\textbf{6.7 Health Bar Module}}
+\subsubsection*{6.7.1 Responsibilities}
+This module displays the health status of the pet. The bar content will decrease every X amount of time. The content can be increased by using items from the backpack.
+
+\subsubsection*{6.7.2 Constraints}
+N/A.
+
+\subsubsection*{6.7.3 Composition}
+The health bar requires the backpack screen to increase its content.
+
+\subsubsection*{6.7.4 Uses/Interactions}
+Allows users to keep track of their pet’s health during game play.
+
+\subsubsection*{6.7.5 Resources}
+This module uses react native navigation to move between the screens. This module also uses Async storage to retrieve and save the data from internal storage.
+
+\subsubsection*{6.7.6 Interface/Exports}
+This module uses DataPassing.js to store and retrieve during application run time.
+
+% --- Carousel ---
+\subsection*{\textbf{6.8 Carousel}}
+\subsubsection*{6.8.1 Responsibilities}
+Displays images about the points of interest of the park. When the images are selected, it triggers a window with information about the point of interest selected. The text contained in the window is converted to speech. The window is accompanied by a virtual pet image.
+
+\subsubsection*{6.8.2 Constraints}
+N/A.
+
+\subsubsection*{6.8.3 Composition}
+N/A.
+
+\subsubsection*{6.8.4 Uses/Interactions}
+Allows users to click on an image and show information about the points of interest.
+
+\subsubsection*{6.8.5 Resources}
+This module uses react-native-snap-carousel.
+
+\subsubsection*{6.8.6 Interface/Exports}
+This module uses react native snap carousel component to generate slides for the point of interest.
+
+% --- Predator ---
+\subsection*{\textbf{6.9 Predator}}
+\subsubsection*{6.9.1 Responsibilities}
+This module is activated by the question marks or steps. Forces the user to walk in order to keep the user physically active during gameplay. Users can choose to not walk but at a cost of an item.
+
+\subsubsection*{6.9.2 Constraints}
+N/A.
+
+\subsubsection*{6.9.3 Composition}
+N/A.
+
+\subsubsection*{6.9.4 Uses/Interactions}
+Users must take 10 steps to get away from predators, or use food from their backpack to lure the predator away.
+
+\subsubsection*{6.9.5 Resources}
+N/A.
+
+\subsubsection*{6.9.6 Interface/Exports}
+N/A.
+
+% --- Camo ---
+\subsection*{\textbf{6.10 Camo}}
+\subsubsection*{6.10.1 Responsibilities}
+This module is activated by the question marks. It displays a camouflage animal hidden in the background. It will navigate to the prize screen if the animal is tapped.
+
+\subsubsection*{6.10.2 Constraints}
+N/A.
+
+\subsubsection*{6.10.3 Composition}
+N/A.
+
+\subsubsection*{6.10.4 Uses/Interactions}
+User tries to find the camouflaged animal they see on the screen. After clicking on the animal, the user will be rewarded with one item.
+
+\subsubsection*{6.10.5 Resources}
+N/A.
+
+\subsubsection*{6.10.6 Interface/Exports}
+N/A.
+
+\section*{\textbf{7. Detailed Lower Level Component Design}}
+N/A.
+
+\section*{\textbf{8. Database Design}}
+N/A.
+
+\newpage
+\section*{\textbf{9. User Interface}}
+
+Upon opening the app, the user will be prompted with the main screen where the user can see the main screen which includes points of interest, the carousel, the pet icon and the health bar.
+
+\subsection*{\textbf{9.1 Overview of User Interface}}
+The home screen of the game will be the main interface between the user and the game. Upon opening the game, the user will be prompted with the home screen which includes points of interest, backpack, pet icon, pet health bar, step counter, and a slider with pictures of different points of interest and its description. \\
+
+This application is being built with the React Native framework. \\
+The application uses react native maps for geolocation, react async storage for data storing, expo pedometer for step counter, expo speech for text to speech, expo barometer for exercise detection and react snap for picture carousel.
+
+\subsection*{\textbf{9.2 Screen Frameworks or Images}}
+\subsection*{\textbf{ex1}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{screenshot1.png}
+    \caption{ex2}
+    \label{fig:design}
+\end{figure}
+
+\subsection*{\textbf{ex2}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{screenshot2.png}
+    \caption{ex2}
+    \label{fig:design2}
+\end{figure}
+
+
+
+\subsection*{\textbf{9.3 User Interface Flow Model}}
+The Home Screen would lead the user to different screens such as: Backpack, Exercise, Quiz, Predator and Camouflage screen. \\
+
+
+\newpage
+\section*{\textbf{10. Requirements Validation and Verification}}
+As of the time of this revision, there have been no validation and verification regarding the requirements specified in the respective SRS document.
+
+
+\section*{\textbf{11. Glossary}}
+N/A
+
+\newpage
+\section*{\textbf{12. References}}
+http://parks.lacounty.gov/--The official website for LA County Parks. Has basis for what information can/will be displayed \\
+
+https://parks.lacounty.gov/whittier-narrows-natural-area-and-nature-center/ -- The official website for Whittier Nature Center. We took some of the information to make questions for quizzes. 
+
+
+
+
+
+
+
+
+
+\end{document}

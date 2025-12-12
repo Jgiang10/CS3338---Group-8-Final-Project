@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  frontend:
+    container_name: parks-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: parks-frontend:1.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://localhost/api
+    networks:
+      - parks-net
+
+  backend:
+    container_name: parks-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: parks-backend:1.0
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/parksdb
+      - JWT_SECRET=secret123
+    depends_on:
+      - mongo
+    networks:
+      - parks-net
+
+  mongo:
+    container_name: parks-mongodb
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - parks-net
+
+  nginx:
+    container_name: parks-nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./deployment/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - parks-net
+
+volumes:
+  mongo-data:
+
+networks:
+  parks-net:
+    driver: bridge
