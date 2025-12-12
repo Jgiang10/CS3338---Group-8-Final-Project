@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+% Page Layout
+\geometry{a4paper, margin=1in}
+
+\pagestyle{fancy}
+\fancyhead[L]{Parks and Recreation Mobile App Enhancement}
+\fancyhead[R]{Page \thepage}
+
+\begin{document}
+
+\title{Project Design Specification:\\ Parks and Recreation Mobile App Enhancement}
+\author{Prepared by: Alejandro Perez, Matthew Floresca Tom, Jason Giang, Jayden Darling\\ Los Angeles Parks and Recreation Department}
+\date{Version 1.0, December 11, 2025}
+\maketitle
+
+\newpage
+
+\section*{1. Overview}
+The app enhances user engagement with LA County Parks through gamification, geolocation, and interactive features. It includes a treasure-hunt style game, educational quizzes, and fitness tracking for children and families.
+
+\section*{2. Design Goals}
+\begin{itemize}
+    \item Cross-platform (iOS and Android)
+    \item Geolocation and motion detection
+    \item Gamification: virtual pets, quizzes, treasure hunts
+    \item Accessibility: text-to-speech, offline functionality
+    \item Performance and data security optimization
+\end{itemize}
+
+\section*{3. System Architecture}
+The system follows a client-server model, consisting of the following components:
+\begin{itemize}
+    \item \textbf{Mobile App}: User interface, game mechanics, geolocation, and motion detection.
+    \item \textbf{Backend Services}: API server, database, analytics, and file server.
+\end{itemize}
+
+\section*{4. Core Features}
+\subsection*{Main Screen}
+\begin{itemize}
+    \item Interactive map with Points of Interest (POIs), pet status, and proximity detection.
+    \item Quick access to pet health, steps counter, and inventory.
+\end{itemize}
+
+\subsection*{Pet Management}
+\begin{itemize}
+    \item Virtual pets with health tracking, food/water levels, and replenishment.
+\end{itemize}
+
+\subsection*{Gamification}
+\begin{itemize}
+    \item \textbf{Quiz Module}: Park-related trivia with rewards.
+    \item \textbf{Exercise Module}: Motion-based tracking and rewards.
+    \item \textbf{Camouflage Module}: Geolocation-based hide-and-seek with animals.
+\end{itemize}
+
+\subsection*{Inventory Management}
+\begin{itemize}
+    \item Item collection, usage for pet health restoration, and capacity tracking.
+\end{itemize}
+
+\subsection*{Geolocation \& Motion Detection}
+\begin{itemize}
+    \item GPS-based location tracking with fallback for network-based location.
+    \item Step counting, exercise tracking, and feedback.
+\end{itemize}
+
+\subsection*{Accessibility}
+\begin{itemize}
+    \item Text-to-speech and offline functionality for users without internet.
+\end{itemize}
+
+\section*{5. User Interface Design}
+\subsection*{Screens}
+\begin{itemize}
+    \item Splash/Login, Home, Pet Selection, Quiz, Exercise, Camo, Backpack, Settings, POI Info.
+\end{itemize}
+
+\subsection*{Design Principles}
+\begin{itemize}
+    \item \textbf{Child-Friendly}: Large touch targets, bright colors, simple navigation.
+    \item \textbf{Intuitive}: Minimal text, consistent iconography, visual feedback.
+    \item \textbf{Performance-Optimized}: Quick transitions, smooth animations, minimal latency.
+    \item \textbf{Accessible}: Support for text scaling, high contrast modes, screen readers.
+\end{itemize}
+
+\section*{6. Technology Stack}
+\subsection*{Frontend}
+\begin{itemize}
+    \item \textbf{iOS}: Swift (SwiftUI/UIKit).
+    \item \textbf{Android}: Kotlin (Android Jetpack).
+    \item \textbf{Cross-Platform Assets}: React Native/Flutter (optional).
+\end{itemize}
+
+\subsection*{Backend}
+\begin{itemize}
+    \item \textbf{Runtime}: Node.js/Python (Django/Flask).
+    \item \textbf{API}: Express.js.
+    \item \textbf{Database}: MongoDB.
+    \item \textbf{Authentication}: JWT.
+\end{itemize}
+
+\section*{7. Security}
+\begin{itemize}
+    \item \textbf{Data Encryption}: HTTPS, AES-256.
+    \item \textbf{Authentication}: OAuth 2.0 with JWT.
+    \item \textbf{Compliance}: COPPA for children's data protection.
+\end{itemize}
+
+\section*{8. Testing and Performance}
+\subsection*{Testing}
+\begin{itemize}
+    \item Unit, integration, and user acceptance testing.
+\end{itemize}
+
+\subsection*{Performance}
+\begin{itemize}
+    \item Optimized for quick load times, minimal battery use, and smooth animations.
+\end{itemize}
+
+\section*{9. Deployment and Maintenance}
+\begin{itemize}
+    \item \textbf{Beta Testing}: Gradual public rollout.
+    \item \textbf{Updates}: Regular bug fixes, feature enhancements, and security patches.
+\end{itemize}
+
+\section*{10. Risk Analysis}
+\subsection*{Technical Risks}
+\begin{itemize}
+    \item GPS inaccuracies, battery drain, network issues, and cross-platform compatibility.
+\end{itemize}
+
+\subsection*{Operational Risks}
+\begin{itemize}
+    \item Server downtime, scalability issues, and data privacy violations.
+\end{itemize}
+
+\end{document}
