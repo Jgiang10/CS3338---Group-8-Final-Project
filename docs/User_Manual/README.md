@@ -1,12 +1,7 @@
-Jira Link For Instructor to Project Jira site
-https://cs3338-team-8.atlassian.net/jira/software/projects/PRA/boards/135/
+# CS3338---Group-8-Final-Project
+*This is a mock senior design project meant to mimic creating a full-scale application. The project is based on the Parks and Recreation Mobile App Enhancement, which had the goal to improve upon the already built Parks Treasure-Hunt mobile game; the original project can be viewed here: https://ascent.cysun.org/project/project/view/98.*
 
-# **Parks and Recreation Mobile App Enhancement User Manual**
-
-## **Jira Link For Instructor**
-https://cs3338-team-8.atlassian.net/jira/software/projects/PRA/boards/135/
-## **Objectives**
-
+## Parks and Recreation Mobile App Enhancement
 The **Parks and Recreation Mobile App Enhancement** is designed to enhance the park experience for visitors by introducing a **gamified** exploration of the park and its amenities. The app leverages technology such as **geolocation**, **exercise tracking**, and **interactive quizzes** to create a fun and educational experience. Users can explore points of interest, interact with a virtual pet, and earn rewards by engaging in various activities such as quizzes, physical exercises, and scavenger hunts.
 
 ### **Key Features**:
@@ -57,3 +52,6 @@ The **Parks and Recreation Mobile App Enhancement** is more than just an app—i
    * Open the **Google Play Store** on your Android device.
    * Search for "**Parks and Recreation Mobile App**."
    * Click on the **Install** button to download the app.
+
+## Jira Site
+[Parks and recreation Mobile App Enhancement Jira Site](https://cs3338-team-8.atlassian.net/jira/software/projects/PRA/boards/135/)
